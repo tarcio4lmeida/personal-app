@@ -101,3 +101,117 @@ VALUES
 (14, 3, 12, NULL, NULL, 9, 7),
 (15, 4, 10, NULL, 'Foco em estabilidade', 10, 5),
 (16, 3, 30, NULL, NULL, 10, 9);
+
+
+-- =========================
+-- ATRIBUTOS CORPORAIS / AVALIAÇÕES FÍSICAS
+-- =========================
+INSERT INTO atributos_corporais (
+    id,
+    data_avaliacao,
+    peso,
+    altura,
+    imc,
+    gordura_corporal,
+    massa_magra,
+    massa_gorda,
+    braco_direito,
+    braco_esquerdo,
+    antebraco_direito,
+    antebraco_esquerdo,
+    peito,
+    cintura,
+    abdomen,
+    quadril,
+    coxa_direita,
+    coxa_esquerda,
+    panturrilha_direita,
+    panturrilha_esquerda,
+    observacoes,
+    aluno_id,
+    treino_id
+) VALUES
+
+-- =========================
+-- Carlos (Aluno 1) - Avaliação inicial (sem treino)
+-- =========================
+(1, '2024-12-01',
+ 84.0, 1.78, 26.5,
+ 22.0, 65.5, 18.5,
+ 34.0, 33.5,
+ 29.0, 28.5,
+ 102.0, 92.0, 94.0, 100.0,
+ 58.0, 57.5,
+ 38.0, 37.5,
+ 'Avaliação inicial antes da prescrição do treino.',
+ 1, NULL),
+
+-- =========================
+-- Carlos - Após início do treino de hipertrofia
+-- =========================
+(2, '2025-01-15',
+ 82.5, 1.78, 26.0,
+ 20.5, 66.8, 15.7,
+ 35.0, 34.5,
+ 30.0, 29.5,
+ 104.0, 90.0, 92.0, 99.0,
+ 59.5, 59.0,
+ 38.5, 38.0,
+ 'Boa resposta ao treino. Ganho de massa magra.',
+ 1, 1),
+
+-- =========================
+-- Mariana (Aluno 2) - Avaliação inicial
+-- =========================
+(3, '2024-11-20',
+ 69.0, 1.65, 25.3,
+ 30.0, 48.3, 20.7,
+ 29.0, 28.5,
+ 24.0, 23.5,
+ 90.0, 82.0, 84.0, 98.0,
+ 56.0, 55.5,
+ 35.0, 34.5,
+ 'Avaliação inicial. Objetivo emagrecimento.',
+ 2, NULL),
+
+-- =========================
+-- Mariana - Durante treino inicial
+-- =========================
+(4, '2024-12-30',
+ 66.5, 1.65, 24.4,
+ 27.5, 48.5, 18.0,
+ 29.5, 29.0,
+ 24.5, 24.0,
+ 91.0, 79.0, 81.0, 96.0,
+ 55.0, 54.5,
+ 35.5, 35.0,
+ 'Redução de gordura corporal. Boa aderência.',
+ 2, 2),
+
+-- =========================
+-- Mariana - Treino avançado (evolução clara)
+-- =========================
+(5, '2025-02-10',
+ 64.8, 1.65, 23.8,
+ 24.0, 49.2, 15.6,
+ 30.5, 30.0,
+ 25.0, 24.5,
+ 92.5, 76.0, 78.0, 94.0,
+ 54.0, 53.5,
+ 36.0, 35.5,
+ 'Evolução excelente. Pode intensificar o treino.',
+ 2, 4),
+
+-- =========================
+-- Rafael (Aluno 3) - Condicionamento
+-- =========================
+(6, '2025-01-05',
+ 90.2, 1.80, 27.8,
+ 26.0, 66.7, 23.5,
+ 36.0, 35.5,
+ 31.0, 30.5,
+ 105.0, 95.0, 97.0, 103.0,
+ 60.0, 59.5,
+ 39.0, 38.5,
+ 'Condicionamento geral. Evitar impacto no joelho.',
+ 3, 3);

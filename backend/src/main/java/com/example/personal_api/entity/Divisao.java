@@ -1,8 +1,18 @@
 package com.example.personal_api.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "divisao")
 public class Divisao {
 
@@ -19,4 +29,8 @@ public class Divisao {
     @ManyToOne(optional = false)
     @JoinColumn(name = "treino_id")
     private Treino treino;
+
+    @OneToMany(mappedBy = "divisao", cascade = CascadeType.ALL)
+    private Set<DivisaoExercicio> divisaoExercicios = new HashSet<>();
+
 }

@@ -5,11 +5,12 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+@Data
 @Entity
-@Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -35,11 +36,10 @@ public class Treino {
 
     private Boolean ativo;
 
-
     @OneToMany(
             mappedBy = "treino",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private List<Divisao> divisoes = new ArrayList<>();
+    private Set<Divisao> divisoes = new HashSet<>();
 }
