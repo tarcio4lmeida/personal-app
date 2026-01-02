@@ -107,7 +107,6 @@ VALUES
 -- ATRIBUTOS CORPORAIS / AVALIAÇÕES FÍSICAS
 -- =========================
 INSERT INTO atributos_corporais (
-    id,
     data_avaliacao,
     peso,
     altura,
@@ -135,7 +134,7 @@ INSERT INTO atributos_corporais (
 -- =========================
 -- Carlos (Aluno 1) - Avaliação inicial (sem treino)
 -- =========================
-(1, '2024-12-01',
+('2024-12-01',
  84.0, 1.78, 26.5,
  22.0, 65.5, 18.5,
  34.0, 33.5,
@@ -149,7 +148,7 @@ INSERT INTO atributos_corporais (
 -- =========================
 -- Carlos - Após início do treino de hipertrofia
 -- =========================
-(2, '2025-01-15',
+('2025-01-15',
  82.5, 1.78, 26.0,
  20.5, 66.8, 15.7,
  35.0, 34.5,
@@ -163,7 +162,7 @@ INSERT INTO atributos_corporais (
 -- =========================
 -- Mariana (Aluno 2) - Avaliação inicial
 -- =========================
-(3, '2024-11-20',
+('2024-11-20',
  69.0, 1.65, 25.3,
  30.0, 48.3, 20.7,
  29.0, 28.5,
@@ -177,7 +176,7 @@ INSERT INTO atributos_corporais (
 -- =========================
 -- Mariana - Durante treino inicial
 -- =========================
-(4, '2024-12-30',
+('2024-12-30',
  66.5, 1.65, 24.4,
  27.5, 48.5, 18.0,
  29.5, 29.0,
@@ -191,7 +190,7 @@ INSERT INTO atributos_corporais (
 -- =========================
 -- Mariana - Treino avançado (evolução clara)
 -- =========================
-(5, '2025-02-10',
+('2025-02-10',
  64.8, 1.65, 23.8,
  24.0, 49.2, 15.6,
  30.5, 30.0,
@@ -205,7 +204,7 @@ INSERT INTO atributos_corporais (
 -- =========================
 -- Rafael (Aluno 3) - Condicionamento
 -- =========================
-(6, '2025-01-05',
+('2025-01-05',
  90.2, 1.80, 27.8,
  26.0, 66.7, 23.5,
  36.0, 35.5,

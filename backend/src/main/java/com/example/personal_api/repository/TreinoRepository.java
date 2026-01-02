@@ -18,4 +18,6 @@ public interface TreinoRepository extends JpaRepository<Treino, Long> {
           AND t.ativo = true
     """)
     Optional<Treino> findTreinoAtivoCompletoByAlunoId(@Param("alunoId") Long alunoId);
+
+    Optional<Treino> findByAlunoIdAndAtivoTrue(Long alunoId);
 }
