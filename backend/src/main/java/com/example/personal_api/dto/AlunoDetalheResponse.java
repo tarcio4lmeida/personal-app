@@ -1,5 +1,7 @@
 package com.example.personal_api.dto;
 
+import java.time.LocalDate;
+
 public record AlunoDetalheResponse(
         Long id,
         String nome,
@@ -7,5 +9,7 @@ public record AlunoDetalheResponse(
         Double pesoAtual,
         Double altura,
         String objetivo,
+        LocalDate dataUltimaAvaliacao,
+        Long diasDesdeUltimaAvaliacao,
         TreinoAtivoResponse treinoAtivo
 ) {}
