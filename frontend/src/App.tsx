@@ -3,23 +3,41 @@ import {
   Toolbar,
   Typography,
   Box,
-  Button,
+  IconButton,
 } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useLocation, useNavigate } from "react-router-dom";
+import AppRoutes from "./routes";
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // mostra botão de voltar exceto na tela principal
+  const mostrarVoltar = location.pathname !== "/alunos";
+
   return (
-    <Box sx={{ minHeight: "100vh", bgcolor: "#121212" }}>
+    <Box sx={{ minHeight: "100vh", bgcolor: "#ecececda" }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6">Personal App</Typography>
+          {mostrarVoltar && (
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={() => navigate(-1)}
+              sx={{ mr: 1 }}
+            >
+              <ArrowBackIcon />
+            </IconButton>
+          )}
+
+          <Typography variant="h6">
+            Personal App
+          </Typography>
         </Toolbar>
       </AppBar>
 
-      <Box sx={{ p: 2 }}>
-        <Button variant="contained" fullWidth>
-          Novo Aluno
-        </Button>
-      </Box>
+      <AppRoutes />
     </Box>
   );
 }

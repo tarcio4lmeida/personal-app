@@ -1,0 +1,33 @@
+export interface AvaliacaoDetalhe {
+  id: number;
+  dataAvaliacao: string;
+  peso?: number;
+  altura?: number;
+  imc?: number;
+  gorduraCorporal?: number;
+  massaMagra?: number;
+  massaGorda?: number;
+  massaMuscular?: number;
+  aguaCorporal?: number;
+  gorduraVisceral?: number;
+  taxaMetabolicaBasal?: number;
+  idadeMetabolica?: number;
+  massaOssea?: number;
+  bracoDireito?: number;
+  bracoEsquerdo?: number;
+  antebracoDireito?: number;
+  antebracoEsquerdo?: number;
+  peito?: number;
+  cintura?: number;
+  abdomen?: number;
+  quadril?: number;
+  coxaDireita?: number;
+  coxaEsquerda?: number;
+  panturrilhaDireita?: number;
+  panturrilhaEsquerda?: number;
+  observacoes?: string;
+  alunoId: number;
+  alunoNome: string;
+  treinoId: number;
+  treinoNome: string;
+}

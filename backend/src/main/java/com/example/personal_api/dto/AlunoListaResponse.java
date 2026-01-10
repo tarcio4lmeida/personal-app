@@ -7,5 +7,6 @@ public record AlunoListaResponse(
         String nome,
         String objetivo,
         Double pesoAtual,
-        LocalDate dataUltimaAvaliacao
+        LocalDate dataUltimaAvaliacao,
+        int qtdDiasUltimaAvaliacao
 ) {}

@@ -10,7 +10,18 @@ INSERT INTO personal (id, nome, email) VALUES
 INSERT INTO aluno (id, nome, idade, peso_atual, altura, objetivo, observacoes, personal_id) VALUES
 (1, 'Carlos Silva', 28, 82.5, 1.78, 'Hipertrofia', 'Aluno iniciante', 1),
 (2, 'Mariana Costa', 32, 65.0, 1.65, 'Emagrecimento', 'Treina 3x por semana', 1),
-(3, 'Rafael Lima', 40, 90.2, 1.80, 'Condicionamento', 'Histórico de dor no joelho', 1);
+(3, 'Rafael Lima', 40, 90.2, 1.80, 'Condicionamento', 'Histórico de dor no joelho', 1),
+(4, 'Ana Paula Mendes', 29, 58.4, 1.62, 'Emagrecimento', 'Busca perder gordura localizada', 1),
+(5, 'Bruno Azevedo', 35, 88.0, 1.75, 'Hipertrofia', 'Treina há 2 anos', 1),
+(6, 'Fernanda Rocha', 41, 70.3, 1.68, 'Qualidade de vida', 'Retornando aos treinos após pausa', 1),
+(7, 'Lucas Pereira', 24, 76.8, 1.80, 'Hipertrofia', 'Aluno disciplinado', 1),
+(8, 'Juliana Nogueira', 38, 62.5, 1.60, 'Emagrecimento', 'Objetivo estético e saúde', 1),
+(9, 'Eduardo Santos', 45, 95.6, 1.82, 'Condicionamento', 'Foco em resistência cardiovascular', 1),
+(10, 'Patrícia Almeida', 33, 68.9, 1.70, 'Emagrecimento', 'Treina 4x por semana', 1),
+(11, 'Rodrigo Farias', 50, 85.2, 1.74, 'Qualidade de vida', 'Hipertenso controlado', 1),
+(12, 'Camila Torres', 27, 59.7, 1.64, 'Hipertrofia', 'Foco em membros inferiores', 1),
+(13, 'Marcelo Ribeiro', 42, 92.1, 1.78, 'Emagrecimento', 'Precisa melhorar mobilidade', 1);
+
 
 -- =========================
 -- TREINOS
