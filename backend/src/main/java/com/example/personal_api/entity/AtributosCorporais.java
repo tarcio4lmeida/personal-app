@@ -18,10 +18,6 @@ public class AtributosCorporais {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // ===== Contexto da avaliação =====
-    @Column(nullable = false)
-    private LocalDate dataAvaliacao;
-
     // ===== Dados básicos =====
     private Double peso;                 // kg
     private Double altura;               // metros
@@ -54,21 +50,4 @@ public class AtributosCorporais {
     private Double panturrilhaEsquerda;
     private Double panturrilhaDireita;
 
-    // ===== Observações gerais =====
-    @Column(columnDefinition = "TEXT")
-    private String observacoes;
-
-    // ===== Relacionamentos =====
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
-
-    /**
-     * Treino vigente no momento da avaliação.
-     * Pode ser null (ex: avaliação inicial).
-     */
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "treino_id")
-    private Treino treino;
 }

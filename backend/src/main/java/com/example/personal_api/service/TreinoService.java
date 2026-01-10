@@ -5,8 +5,10 @@ import com.example.personal_api.dto.DivisaoResponse;
 import com.example.personal_api.dto.ExercicioResponse;
 import com.example.personal_api.dto.TreinoAtivoResponse;
 import com.example.personal_api.entity.AtributosCorporais;
+import com.example.personal_api.entity.Avaliacao;
 import com.example.personal_api.entity.Treino;
 import com.example.personal_api.repository.AtributosCorporaisRepository;
+import com.example.personal_api.repository.AvaliacaoRepository;
 import com.example.personal_api.repository.TreinoRepository;
 import com.example.personal_api.service.exception.TreinoAtivoNaoEncontradoException;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,8 @@ public class TreinoService {
     private final TreinoRepository treinoRepository;
 
     private final AtributosCorporaisRepository atributosRepository;
+
+    private final AvaliacaoRepository avaliacaoRepository;
 
     public AlunoDetalheResponse buscarTreinoAtivo(Long alunoId) {
         Treino treino = treinoRepository
@@ -50,8 +54,8 @@ public class TreinoService {
                 ).toList()
         );
 
-        AtributosCorporais ultima =
-                atributosRepository
+        Avaliacao ultima =
+                avaliacaoRepository
                         .findFirstByAlunoIdOrderByDataAvaliacaoDesc(alunoId)
                         .orElse(null);
 

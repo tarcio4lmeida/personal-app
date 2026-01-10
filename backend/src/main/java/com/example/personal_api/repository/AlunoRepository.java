@@ -16,11 +16,11 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
                     a.nome,
                     a.objetivo,
                     a.pesoAtual,
-                    max(ac.dataAvaliacao),
+                    max(av.dataAvaliacao),
                     0
                 )
                 from Aluno a
-                left join AtributosCorporais ac on ac.aluno.id = a.id
+                left join Avaliacao av on av.aluno.id = a.id
                 where a.personal.id = :personalId
                   and (
                     :search is null
@@ -28,7 +28,13 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
                     or lower(a.nome) like lower(concat('%', :search, '%'))
                   )
                 group by a.id, a.nome, a.objetivo, a.pesoAtual
-                order by max(ac.dataAvaliacao) desc nulls last
+                order by
+                   case
+                       when max(av.dataAvaliacao) is null then 1
+                       else 0
+                   end,
+                   max(av.dataAvaliacao) asc
+                
             """)
     Page<AlunoListaResponse> listarAlunosComUltimaAvaliacao(
             @Param("personalId") Long personalId,

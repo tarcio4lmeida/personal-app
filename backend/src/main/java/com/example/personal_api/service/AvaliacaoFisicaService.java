@@ -5,9 +5,10 @@ import com.example.personal_api.dto.AvaliacaoFisicaListaResponse;
 import com.example.personal_api.dto.CriarAvaliacaoFisicaRequest;
 import com.example.personal_api.entity.Aluno;
 import com.example.personal_api.entity.AtributosCorporais;
+import com.example.personal_api.entity.Avaliacao;
 import com.example.personal_api.entity.Treino;
 import com.example.personal_api.repository.AlunoRepository;
-import com.example.personal_api.repository.AtributosCorporaisRepository;
+import com.example.personal_api.repository.AvaliacaoRepository;
 import com.example.personal_api.repository.TreinoRepository;
 import com.example.personal_api.service.exception.AlunoNaoEncontradoException;
 import com.example.personal_api.service.exception.AvaliacaoNaoEncontradaException;
@@ -25,7 +26,7 @@ public class AvaliacaoFisicaService {
 
     private final AlunoRepository alunoRepository;
     private final TreinoRepository treinoRepository;
-    private final AtributosCorporaisRepository atributosRepository;
+    private final AvaliacaoRepository avalicaoRepository;
 
     @Transactional
     public void criarAvaliacao(Long alunoId, CriarAvaliacaoFisicaRequest request) {
@@ -37,8 +38,7 @@ public class AvaliacaoFisicaService {
                 .findByAlunoIdAndAtivoTrue(alunoId)
                 .orElse(null);
 
-        AtributosCorporais avaliacao = AtributosCorporais.builder()
-                .dataAvaliacao(LocalDate.now())
+        AtributosCorporais atributosCorporais = AtributosCorporais.builder()
                 .peso(request.peso())
                 .altura(request.altura())
                 .gorduraCorporal(request.gorduraCorporal())
@@ -69,13 +69,16 @@ public class AvaliacaoFisicaService {
                 .coxaEsquerda(request.coxaEsquerda())
                 .panturrilhaDireita(request.panturrilhaDireita())
                 .panturrilhaEsquerda(request.panturrilhaEsquerda())
-
-                .observacoes(request.observacoes())
-                .aluno(aluno)
-                .treino(treinoAtivo)
                 .build();
 
-        atributosRepository.save(avaliacao);
+        Avaliacao avaliacao = Avaliacao.builder()
+                .dataAvaliacao(LocalDate.now())
+                .aluno(aluno)
+                .atributosCorporais(atributosCorporais)
+                .observacoes(request.observacoes()).
+                treino(treinoAtivo).build();
+
+        avalicaoRepository.save(avaliacao);
 
         // Atualiza estado atual do aluno (cache)
         if (request.peso() != null) {
@@ -90,8 +93,7 @@ public class AvaliacaoFisicaService {
         alunoRepository.findById(alunoId)
                 .orElseThrow(() -> new AlunoNaoEncontradoException(alunoId));
 
-        return atributosRepository
-                .findByAlunoIdOrderByDataAvaliacaoDesc(alunoId)
+        return avalicaoRepository.findByAlunoIdOrderByDataAvaliacaoDesc(alunoId)
                 .stream()
                 .map(avaliacao -> new AvaliacaoFisicaListaResponse(
                         avaliacao.getId(),
@@ -104,47 +106,47 @@ public class AvaliacaoFisicaService {
 
     public AvaliacaoFisicaDetalheResponse buscarDetalhe(Long avaliacaoId) {
 
-        AtributosCorporais a = atributosRepository.findById(avaliacaoId)
+        Avaliacao avaliacao = avalicaoRepository.findById(avaliacaoId)
                 .orElseThrow(() -> new AvaliacaoNaoEncontradaException(avaliacaoId));
 
         return new AvaliacaoFisicaDetalheResponse(
-                a.getId(),
-                a.getDataAvaliacao(),
+                avaliacao.getId(),
+                avaliacao.getDataAvaliacao(),
 
-                a.getPeso(),
-                a.getAltura(),
-                a.getImc(),
+                avaliacao.getAtributosCorporais().getAltura(),
+                avaliacao.getAtributosCorporais().getImc(),
 
-                a.getGorduraCorporal(),
-                a.getMassaMagra(),
-                a.getMassaGorda(),
+                avaliacao.getAtributosCorporais().getPeso(),
+                avaliacao.getAtributosCorporais().getGorduraCorporal(),
+                avaliacao.getAtributosCorporais().getMassaMagra(),
+                avaliacao.getAtributosCorporais().getMassaGorda(),
 
-                a.getMassaMuscular(),
-                a.getAguaCorporal(),
-                a.getGorduraVisceral(),
-                a.getTaxaMetabolicaBasal(),
-                a.getIdadeMetabolica(),
-                a.getMassaOssea(),
+                avaliacao.getAtributosCorporais().getMassaMuscular(),
+                avaliacao.getAtributosCorporais().getAguaCorporal(),
+                avaliacao.getAtributosCorporais().getGorduraVisceral(),
+                avaliacao.getAtributosCorporais().getTaxaMetabolicaBasal(),
+                avaliacao.getAtributosCorporais().getIdadeMetabolica(),
+                avaliacao.getAtributosCorporais().getMassaOssea(),
 
-                a.getBracoDireito(),
-                a.getBracoEsquerdo(),
-                a.getAntebracoDireito(),
-                a.getAntebracoEsquerdo(),
-                a.getPeito(),
-                a.getCintura(),
-                a.getAbdomen(),
-                a.getQuadril(),
-                a.getCoxaDireita(),
-                a.getCoxaEsquerda(),
-                a.getPanturrilhaDireita(),
-                a.getPanturrilhaEsquerda(),
+                avaliacao.getAtributosCorporais().getBracoDireito(),
+                avaliacao.getAtributosCorporais().getBracoEsquerdo(),
+                avaliacao.getAtributosCorporais().getAntebracoDireito(),
+                avaliacao.getAtributosCorporais().getAntebracoEsquerdo(),
+                avaliacao.getAtributosCorporais().getPeito(),
+                avaliacao.getAtributosCorporais().getCintura(),
+                avaliacao.getAtributosCorporais().getAbdomen(),
+                avaliacao.getAtributosCorporais().getQuadril(),
+                avaliacao.getAtributosCorporais().getCoxaDireita(),
+                avaliacao.getAtributosCorporais().getCoxaEsquerda(),
+                avaliacao.getAtributosCorporais().getPanturrilhaDireita(),
+                avaliacao.getAtributosCorporais().getPanturrilhaEsquerda(),
 
-                a.getObservacoes(),
+                avaliacao.getObservacoes(),
 
-                a.getAluno().getId(),
-                a.getAluno().getNome(),
-                a.getTreino() != null ? a.getTreino().getId() : null,
-                a.getTreino() != null ? a.getTreino().getNome() : null
+                avaliacao.getAluno().getId(),
+                avaliacao.getAluno().getNome(),
+                avaliacao.getTreino() != null ? avaliacao.getTreino().getId() : null,
+                avaliacao.getTreino() != null ? avaliacao.getTreino().getNome() : null
         );
     }
 

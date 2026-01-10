@@ -66,162 +66,96 @@ INSERT INTO divisao (id, nome, grupo_muscular, treino_id) VALUES
 (9, 'B', 'Costas e Bíceps', 4),
 (10, 'C', 'Pernas + Core', 4);
 
--- =========================
--- EXERCÍCIOS (catálogo)
--- =========================
-INSERT INTO exercicio (id, nome, grupo_muscular) VALUES
-(1, 'Supino Reto', 'Peito'),
-(2, 'Crucifixo', 'Peito'),
-(3, 'Puxada Frente', 'Costas'),
-(4, 'Remada Curvada', 'Costas'),
-(5, 'Agachamento Livre', 'Pernas'),
-(6, 'Leg Press', 'Pernas'),
-(7, 'Rosca Direta', 'Bíceps'),
-(8, 'Tríceps Pulley', 'Tríceps'),
-(9, 'Prancha', 'Core'),
-(10, 'Corrida Esteira', 'Cardio');
-
--- =========================
--- DIVISAO_EXERCICIO
--- =========================
-INSERT INTO divisao_exercicio
-(id, series, repeticoes, carga, observacoes, divisao_id, exercicio_id)
-VALUES
--- Carlos - Treino A
-(1, 4, 10, NULL, 'Controle de movimento', 1, 1),
-(2, 3, 12, NULL, NULL, 1, 2),
-(3, 3, 12, NULL, NULL, 1, 8),
-
--- Carlos - Treino B
-(4, 4, 10, NULL, NULL, 2, 3),
-(5, 3, 10, NULL, NULL, 2, 4),
-(6, 3, 12, NULL, NULL, 2, 7),
-
--- Carlos - Treino C
-(7, 4, 8, NULL, 'Atenção ao joelho', 3, 5),
-(8, 3, 12, NULL, NULL, 3, 6),
-
--- Mariana - treino antigo
-(9, 3, 15, NULL, NULL, 4, 10),
-(10, 3, 30, NULL, NULL, 4, 9),
-
--- Mariana - treino atual (evolução)
-(11, 4, 12, NULL, 'Controle de carga', 8, 1),
-(12, 3, 10, NULL, NULL, 8, 8),
-(13, 4, 10, NULL, NULL, 9, 3),
-(14, 3, 12, NULL, NULL, 9, 7),
-(15, 4, 10, NULL, 'Foco em estabilidade', 10, 5),
-(16, 3, 30, NULL, NULL, 10, 9);
 
 
 -- =========================
--- ATRIBUTOS CORPORAIS / AVALIAÇÕES FÍSICAS
+-- ATRIBUTOS_CORPORAIS (SEM OBSERVAÇÕES)
 -- =========================
+
 INSERT INTO atributos_corporais (
-    data_avaliacao,
-    peso,
-    altura,
-    imc,
-    gordura_corporal,
-    massa_magra,
-    massa_gorda,
-    braco_direito,
-    braco_esquerdo,
-    antebraco_direito,
-    antebraco_esquerdo,
-    peito,
-    cintura,
-    abdomen,
-    quadril,
-    coxa_direita,
-    coxa_esquerda,
-    panturrilha_direita,
-    panturrilha_esquerda,
-    observacoes,
-    aluno_id,
-    treino_id
+    peso, altura, imc,
+    gordura_corporal, massa_magra, massa_gorda,
+    braco_direito, braco_esquerdo,
+    antebraco_direito, antebraco_esquerdo,
+    peito, cintura, abdomen, quadril,
+    coxa_direita, coxa_esquerda,
+    panturrilha_direita, panturrilha_esquerda
 ) VALUES
 
--- =========================
--- Carlos (Aluno 1) - Avaliação inicial (sem treino)
--- =========================
-('2024-12-01',
- 84.0, 1.78, 26.5,
+-- 1 - Carlos (Avaliação inicial)
+(84.0, 1.78, 26.5,
  22.0, 65.5, 18.5,
  34.0, 33.5,
  29.0, 28.5,
  102.0, 92.0, 94.0, 100.0,
  58.0, 57.5,
- 38.0, 37.5,
- 'Avaliação inicial antes da prescrição do treino.',
- 1, NULL),
+ 38.0, 37.5),
 
--- =========================
--- Carlos - Após início do treino de hipertrofia
--- =========================
-('2025-01-15',
- 82.5, 1.78, 26.0,
+-- 2 - Carlos (Pós treino)
+(82.5, 1.78, 26.0,
  20.5, 66.8, 15.7,
  35.0, 34.5,
  30.0, 29.5,
  104.0, 90.0, 92.0, 99.0,
  59.5, 59.0,
- 38.5, 38.0,
- 'Boa resposta ao treino. Ganho de massa magra.',
- 1, 1),
+ 38.5, 38.0),
 
--- =========================
--- Mariana (Aluno 2) - Avaliação inicial
--- =========================
-('2024-11-20',
- 69.0, 1.65, 25.3,
+-- 3 - Mariana (Inicial)
+(69.0, 1.65, 25.3,
  30.0, 48.3, 20.7,
  29.0, 28.5,
  24.0, 23.5,
  90.0, 82.0, 84.0, 98.0,
  56.0, 55.5,
- 35.0, 34.5,
- 'Avaliação inicial. Objetivo emagrecimento.',
- 2, NULL),
+ 35.0, 34.5),
 
--- =========================
--- Mariana - Durante treino inicial
--- =========================
-('2024-12-30',
- 66.5, 1.65, 24.4,
+-- 4 - Mariana (Durante treino)
+(66.5, 1.65, 24.4,
  27.5, 48.5, 18.0,
  29.5, 29.0,
  24.5, 24.0,
  91.0, 79.0, 81.0, 96.0,
  55.0, 54.5,
- 35.5, 35.0,
- 'Redução de gordura corporal. Boa aderência.',
- 2, 2),
+ 35.5, 35.0),
 
--- =========================
--- Mariana - Treino avançado (evolução clara)
--- =========================
-('2025-02-10',
- 64.8, 1.65, 23.8,
+-- 5 - Mariana (Treino avançado)
+(64.8, 1.65, 23.8,
  24.0, 49.2, 15.6,
  30.5, 30.0,
  25.0, 24.5,
  92.5, 76.0, 78.0, 94.0,
  54.0, 53.5,
- 36.0, 35.5,
- 'Evolução excelente. Pode intensificar o treino.',
- 2, 4),
+ 36.0, 35.5),
 
--- =========================
--- Rafael (Aluno 3) - Condicionamento
--- =========================
-('2025-01-05',
- 90.2, 1.80, 27.8,
+-- 6 - Rafael (Condicionamento)
+(90.2, 1.80, 27.8,
  26.0, 66.7, 23.5,
  36.0, 35.5,
  31.0, 30.5,
  105.0, 95.0, 97.0, 103.0,
  60.0, 59.5,
- 39.0, 38.5,
- 'Condicionamento geral. Evitar impacto no joelho.',
- 3, 3);
+ 39.0, 38.5);
+
+
+-- =========================
+-- AVALIACOES (AGORA COM OBSERVAÇÕES)
+-- =========================
+
+INSERT INTO avaliacao (data_avaliacao, aluno_id, treino_id, atributos_corporais_id, observacoes) VALUES
+-- 1 - Carlos inicial
+('2024-12-01', 1, NULL, 1, 'Avaliação inicial antes da prescrição do treino.'),
+
+-- 2 - Carlos pós treino
+('2025-01-01', 1, 1, 2, 'Boa resposta ao treino. Ganho de massa magra.'),
+
+-- 3 - Mariana inicial
+('2024-11-20', 2, NULL, 3, 'Avaliação inicial. Objetivo emagrecimento.'),
+
+-- 4 - Mariana durante treino
+('2024-12-30', 2, 2, 4, 'Redução de gordura corporal. Boa aderência.'),
+
+-- 5 - Mariana avançado
+('2025-02-10', 2, 4, 5, 'Evolução excelente. Pode intensificar o treino.'),
+
+-- 6 - Rafael condicionamento
+('2025-01-05', 3, 3, 6, 'Condicionamento geral. Evitar impacto no joelho.');
