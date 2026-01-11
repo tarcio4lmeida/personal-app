@@ -22,7 +22,6 @@ INSERT INTO aluno (id, nome, idade, peso_atual, altura, objetivo, observacoes, p
 (12, 'Camila Torres', 27, 59.7, 1.64, 'Hipertrofia', 'Foco em membros inferiores', 1),
 (13, 'Marcelo Ribeiro', 42, 92.1, 1.78, 'Emagrecimento', 'Precisa melhorar mobilidade', 1);
 
-
 -- =========================
 -- TREINOS
 -- =========================
@@ -43,29 +42,68 @@ INSERT INTO treino (id, nome, ativo, descricao, aluno_id) VALUES
  'Aluno evoluiu bem. Pode intensificar o treino mantendo boa execução.',
  2);
 
+-- =========================
+-- DIVISAO
+-- =========================
+INSERT INTO divisao (nome, grupo_muscular, treino_id) VALUES
+('A', 'Peito e Tríceps', 1),
+('B', 'Costas e Bíceps', 1),
+('C', 'Pernas', 1),
+('A', 'Full Body', 2),
+('B', 'Core e Cardio', 2),
+('A', 'Inferiores', 3),
+('B', 'Superiores', 3),
+('A', 'Peito e Tríceps', 4),
+('B', 'Costas e Bíceps', 4),
+('C', 'Pernas + Core', 4);
+
 
 -- =========================
--- DIVISÕES
+-- EXERCÍCIOS (catálogo)
 -- =========================
-INSERT INTO divisao (id, nome, grupo_muscular, treino_id) VALUES
--- Carlos
-(1, 'A', 'Peito e Tríceps', 1),
-(2, 'B', 'Costas e Bíceps', 1),
-(3, 'C', 'Pernas', 1),
+INSERT INTO exercicio (nome, grupo_muscular) VALUES
+('Supino Reto', 'Peito'),
+('Crucifixo', 'Peito'),
+('Puxada Frente', 'Costas'),
+('Remada Curvada', 'Costas'),
+('Agachamento Livre', 'Pernas'),
+('Leg Press', 'Pernas'),
+('Rosca Direta', 'Bíceps'),
+('Tríceps Pulley', 'Tríceps'),
+('Prancha', 'Core'),
+('Corrida Esteira', 'Cardio');
 
--- Mariana - Treino antigo (2x por semana)
-(4, 'A', 'Full Body', 2),
-(5, 'B', 'Core e Cardio', 2),
+-- =========================
+-- DIVISAO_EXERCICIO
+-- =========================
+INSERT INTO divisao_exercicio
+(series, repeticoes, carga, observacoes, divisao_id, exercicio_id)
+VALUES
+-- Carlos - Treino A
+(4, 10, NULL, 'Controle de movimento', 1, 1),
+(3, 12, NULL, NULL, 1, 2),
+(3, 12, NULL, NULL, 1, 8),
 
--- Rafael
-(6, 'A', 'Inferiores', 3),
-(7, 'B', 'Superiores', 3),
+-- Carlos - Treino B
+(4, 10, NULL, NULL, 2, 3),
+(3, 10, NULL, NULL, 2, 4),
+(3, 12, NULL, NULL, 2, 7),
 
--- Mariana - Treino atual (3x por semana, mais avançado)
-(8, 'A', 'Peito e Tríceps', 4),
-(9, 'B', 'Costas e Bíceps', 4),
-(10, 'C', 'Pernas + Core', 4);
+-- Carlos - Treino C
+(4, 8, NULL, 'Atenção ao joelho', 3, 5),
+(3, 12, NULL, NULL, 3, 6),
 
+-- Mariana - treino antigo
+(3, 15, NULL, NULL, 4, 10),
+(3, 30, NULL, NULL, 4, 9),
+
+-- Mariana - treino atual (evolução)
+(4, 12, NULL, 'Controle de carga', 8, 1),
+(3, 10, NULL, NULL, 8, 8),
+(4, 10, NULL, NULL, 9, 3),
+(3, 12, NULL, NULL, 9, 7),
+(4, 10, NULL, 'Foco em estabilidade', 10, 5),
+(3, 30, NULL, NULL, 10, 9);
 
 
 -- =========================
